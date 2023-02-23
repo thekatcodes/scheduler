@@ -14,6 +14,7 @@ import Appointment from "components/Appointment/index.js";
 import Header from "components/Appointment/Header";
 import Empty from "components/Appointment/Empty";
 import Show from "components/Appointment/Show";
+import Confirm from "components/Appointment/Confirm";
 
 storiesOf("Button", module)
 	.addParameters({
@@ -208,8 +209,22 @@ storiesOf("Show", module)
 	.add("Show", () => (
 		<Show
 			student="Katie Liu"
-            interviewer={interviewer}
-            onEdit={action("onEdit")}
-            onDelete={action("onDelete")}
+			interviewer={interviewer}
+			onEdit={action("onEdit")}
+			onDelete={action("onDelete")}
+		/>
+	));
+
+// Story for Appointment Confirm (onDelete)
+
+storiesOf("Confirm", module)
+	.addParameters({
+		backgrounds: [{ name: "white", value: "#fff", default: true }],
+	})
+	.add("Confirm", () => (
+		<Confirm
+			message="Delete the appointment?"
+            onConfirm={action("onConfirm")}
+            onCancel={ action("onCancel")}
 		/>
 	));
