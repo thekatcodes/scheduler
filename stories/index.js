@@ -196,6 +196,4 @@ storiesOf("Empty", module)
     .addParameters({
         backgrounds: [{ name: "white", value: "#fff", default: true }],
     })
-    .add("Empty", () => {
-        <Empty onAdd={action("onAdd")} />
-    });
+    .add("Empty", () => <Empty onAdd={action("onAdd")} />);
