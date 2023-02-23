@@ -17,7 +17,7 @@ import Show from "components/Appointment/Show";
 import Confirm from "components/Appointment/Confirm";
 import Status from "components/Appointment/Status";
 import Error from "components/Appointment/Error";
-
+import Form from "components/Appointment/Form";
 
 storiesOf("Button", module)
 	.addParameters({
@@ -227,8 +227,8 @@ storiesOf("Confirm", module)
 	.add("Confirm", () => (
 		<Confirm
 			message="Delete the appointment?"
-            onConfirm={action("onConfirm")}
-            onCancel={ action("onCancel")}
+			onConfirm={action("onConfirm")}
+			onCancel={action("onCancel")}
 		/>
 	));
 
@@ -237,22 +237,41 @@ storiesOf("Confirm", module)
 storiesOf("Status", module)
 	.addParameters({
 		backgrounds: [{ name: "white", value: "#fff", default: true }],
-    })
-    .add("Status", () => (
-		<Status
-			message="Deleting"
-		/>
-    ));
-    
+	})
+	.add("Status", () => <Status message="Deleting" />);
+
 // Story for Error
 
 storiesOf("Error", module)
 	.addParameters({
 		backgrounds: [{ name: "white", value: "#fff", default: true }],
-    })
-    .add("Error", () => (
+	})
+	.add("Error", () => (
 		<Error
-            message="Could not delete appointment."
-            onClose={ action("onClose")}
+			message="Could not delete appointment."
+			onClose={action("onClose")}
 		/>
-    ));
+	));
+
+//Story for Form
+
+storiesOf("Form", module)
+	.addParameters({
+		backgrounds: [{ name: "white", value: "#fff", default: true }],
+	})
+	.add("Edit", () => (
+		<Form
+			student="Katie Liu"
+			interviewer={3}
+			interviewers={interviewers}
+			onSave={action("onSave")}
+			onCancel={action("onCancel")}
+		/>
+	))
+	.add("Create", () => (
+		<Form
+			interviewers={interviewers}
+			onSave={action("onSave")}
+			onCancel={action("onCancel")}
+		/>
+	));
