@@ -11,8 +11,8 @@ export default function Application(props) {
 	const [state, setState] = useState({
 		day: "Monday",
 		days: [],
-		// you may put the line below, but will have to remove/comment hardcoded appointments variable
-		// appointments: {}
+        appointments: {},
+        interviewers: {}
 	});
 	const setDay = (day) => setState({ ...state, day });
 
@@ -24,28 +24,28 @@ export default function Application(props) {
 		]).then((all) => {
 			setState((prev) => ({
 				...prev,
-                days: all[0].data,
-                appointments: all[1].data,
-                interviewers: all[2].data
-			}));
-		});
+				days: all[0].data,
+				appointments: all[1].data,
+				interviewers: all[2].data,
+            }));
+        });
 	}, []);
 
-	const dailyAppointments = getAppointmentsForDay(state, state.day);
+    const dailyAppointments = getAppointmentsForDay(state, state.day);
 
 	const appointmentDisplay = dailyAppointments.map((appointment) => {
-        const interview = getInterview(state, appointment.interview);
+		const interview = getInterview(state, appointment.interview);
 
-			return (
-                <Appointment
-                key={appointment.id}
-                id={appointment.id}
-                time={appointment.time}
+		return (
+			<Appointment
+				key={appointment.id}
+				id={appointment.id}
+				time={appointment.time}
                 interview={interview}
-              />
-			);
-		}
-	);
+                interviewers={state.interviewers}
+			/>
+		);
+	});
 
 	return (
 		<main className="layout">
