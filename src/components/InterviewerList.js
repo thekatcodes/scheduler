@@ -4,7 +4,7 @@ import "components/InterviewerList.scss";
 
 export default function InterviewerList(props) {
     const { interviewers, value, onChange } = props;
-    console.log(interviewers)
+    // console.log(interviewers)
     const ObjtoArray = (obj) => Object.assign([], Object.values(obj));
 	const interviewerDisplay = ObjtoArray(interviewers).map((interviewer) => {
         return (
