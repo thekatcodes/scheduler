@@ -22,10 +22,10 @@ export default function Form(props) {
 		reset();
 	};
 
-    const save = (event) => {
-        event.preventDefault();
-        onSave(student, interviewer);
-    };
+    // const save = (event) => {
+    //     event.preventDefault();
+    //     onSave(student, interviewer);
+    // };
 
     function validate() {
         if (student === "") {
@@ -35,7 +35,8 @@ export default function Form(props) {
         if (interviewer === null) {
             setError("Please select an interviewer");
             return;
-          }
+        }
+        setError("");
         onSave(student, interviewer);
       }
     
