@@ -2,6 +2,8 @@ import React from "react";
 import InterviewerListItem from "components/InterviewerListItem";
 import "components/InterviewerList.scss";
 
+import PropTypes from 'prop-types'; 
+
 export default function InterviewerList(props) {
     const { interviewers, value, onChange } = props;
     // console.log(interviewers)
@@ -16,7 +18,8 @@ export default function InterviewerList(props) {
                 setInterviewer={() => onChange(interviewer.id)}
             />
 			
-		);
+        );
+        
 	});
 	return (
 		<section className="interviewers">
@@ -25,3 +28,9 @@ export default function InterviewerList(props) {
 		</section>
 	);
 }
+
+// Test with PropTypes that an interviewers array is passed 
+InterviewerList.propTypes = {
+    interviewers: PropTypes.array.isRequired
+  };
+  
