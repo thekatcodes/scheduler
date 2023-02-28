@@ -7,7 +7,36 @@ export default function useApplicationData() {
 		days: [],
 		appointments: {},
 		interviewers: {},
-	});
+    });
+    
+  
+/* Get Spots Remaining */
+
+function decrementSpots(state) {
+
+    const newDays = [];
+  
+    for (const day of state.days) {
+      if (day.name === state.day) {
+        newDays.push({...day, spots: day.spots-1})
+      } else {
+        newDays.push(day);
+      }
+    }
+    return newDays;
+  };
+  
+function incrementSpots(state) {
+    const newDays = [];
+    for (const day of state.days) {
+      if (day.name === state.day) {
+        newDays.push({...day, spots: day.spots+1})
+      } else {
+        newDays.push(day);
+      }
+    }
+    return newDays;
+  };
 
 	const bookInterview = function(id, interview) {
 		// console.log(id, interview);
@@ -27,10 +56,13 @@ export default function useApplicationData() {
 			appointments,
         });
         
+        const days = decrementSpots(state);
+
 		return axios.put(`/api/appointments/${id}`, {interview}).then(() => {
 			setState({
 				...state,
-				appointments,
+                appointments,
+                days
 			});
 		});
     }
@@ -52,10 +84,13 @@ export default function useApplicationData() {
 			appointments,
         });
         
+        const days = incrementSpots(state);
+
 		return axios.delete(`/api/appointments/${id}`).then(() => {
 			setState({
 				...state,
-				appointments,
+                appointments,
+                days
 			});
         });
     };
