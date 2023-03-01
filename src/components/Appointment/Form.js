@@ -22,11 +22,6 @@ export default function Form(props) {
 		reset();
 	};
 
-    // const save = (event) => {
-    //     event.preventDefault();
-    //     onSave(student, interviewer);
-    // };
-
     function validate() {
         if (student === "") {
           setError("Student name cannot be blank");
