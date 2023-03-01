@@ -1,5 +1,5 @@
 # Interview Scheduler
-Interview Scheduler is a single-page app that allows users to book technical interviews. The front end of this project was created with **React**. It makes requests to an **API** with **Axios** to fetch and store appointment data from a database. This project was tested using **Storybook**, **Jest** and **Cypress**.
+Interview Scheduler is a single-page app that allows users to book interviews. The front end of this project was created with **React**. It makes requests to an **API** with **Axios** to fetch and store appointment data from a database. This project was tested using **Storybook**, **Jest** and **Cypress**.
 
 ## Final Product
 ### Demo
