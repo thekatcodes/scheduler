@@ -7,40 +7,40 @@ export default function useApplicationData() {
 		days: [],
 		appointments: {},
 		interviewers: {},
-    });
-    
-  
-/* Get Spots Remaining */
+	});
 
-function decrementSpots(state) {
+	/* Get spots remaining (decrement) */
 
-    const newDays = [];
-  
-    for (const day of state.days) {
-      if (day.name === state.day) {
-        newDays.push({...day, spots: day.spots-1})
-      } else {
-        newDays.push(day);
-      }
-    }
-    return newDays;
-  };
-  
-function incrementSpots(state) {
-    const newDays = [];
-    for (const day of state.days) {
-      if (day.name === state.day) {
-        newDays.push({...day, spots: day.spots+1})
-      } else {
-        newDays.push(day);
-      }
-    }
-    return newDays;
-  };
+	function decrementSpots(state) {
+		const newDays = [];
 
-	const bookInterview = function(id, interview) {
-		// console.log(id, interview);
+		for (const day of state.days) {
+			if (day.name === state.day) {
+				newDays.push({ ...day, spots: day.spots - 1 });
+			} else {
+				newDays.push(day);
+			}
+		}
+		return newDays;
+	}
 
+	/* Get spots remaining (increment) */
+
+	function incrementSpots(state) {
+		const newDays = [];
+		for (const day of state.days) {
+			if (day.name === state.day) {
+				newDays.push({ ...day, spots: day.spots + 1 });
+			} else {
+				newDays.push(day);
+			}
+		}
+		return newDays;
+	}
+
+    /* Add booked interview */
+
+	const bookInterview = function (id, interview) {
 		const appointment = {
 			...state.appointments[id],
 			interview: { ...interview },
@@ -54,21 +54,22 @@ function incrementSpots(state) {
 		setState({
 			...state,
 			appointments,
-        });
-        
-        const days = decrementSpots(state);
+		});
 
-		return axios.put(`/api/appointments/${id}`, {interview}).then(() => {
+		const days = decrementSpots(state);
+
+		return axios.put(`/api/appointments/${id}`, { interview }).then(() => {
 			setState({
 				...state,
-                appointments,
-                days
+				appointments,
+				days,
 			});
 		});
-    }
-    
-    const cancelInterview = function(id) {
+	};
 
+    /* Remove/Cancel booked interview */
+
+	const cancelInterview = function (id) {
 		const appointment = {
 			...state.appointments[id],
 			interview: null,
@@ -82,28 +83,28 @@ function incrementSpots(state) {
 		setState({
 			...state,
 			appointments,
-        });
-        
-        const days = incrementSpots(state);
+		});
+
+		const days = incrementSpots(state);
 
 		return axios.delete(`/api/appointments/${id}`).then(() => {
 			setState({
 				...state,
-                appointments,
-                days
+				appointments,
+				days,
 			});
-        });
-    };
+		});
+	};
 
-    const setDay = (day) => setState({ ...state, day });
+	const setDay = (day) => setState({ ...state, day });
 
-    useEffect(() => {
+	useEffect(() => {
 		Promise.all([
 			axios.get("/api/days"),
 			axios.get("/api/appointments"),
 			axios.get("/api/interviewers"),
-        ]).then((all) => {
-            console.log(all);
+		]).then((all) => {
+			console.log(all);
 			setState((prev) => ({
 				...prev,
 				days: all[0].data,
@@ -111,7 +112,7 @@ function incrementSpots(state) {
 				interviewers: all[2].data,
 			}));
 		});
-    }, []);
-    
-    return {state, setDay, bookInterview, cancelInterview}
+	}, []);
+
+	return { state, setDay, bookInterview, cancelInterview };
 }

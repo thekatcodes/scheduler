@@ -1,21 +1,24 @@
 import React from "react";
 import useApplicationData from "hooks/useApplicationData";
-
 import DayList from "./DayList";
 import Appointment from "./Appointment";
-import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
+import {
+	getAppointmentsForDay,
+	getInterview,
+	getInterviewersForDay,
+} from "helpers/selectors";
 import "components/Application.scss";
 
 export default function Application() {
-    const { state, setDay, bookInterview, cancelInterview } = useApplicationData();
+	const { state, setDay, bookInterview, cancelInterview } =
+		useApplicationData();
 
 	const dailyAppointments = getAppointmentsForDay(state, state.day);
-    const interviewers = getInterviewersForDay(state, state.day);
+	const interviewers = getInterviewersForDay(state, state.day);
 
-    const appointmentDisplay = dailyAppointments.map((appointment) => {
+	const appointmentDisplay = dailyAppointments.map((appointment) => {
 		const interview = getInterview(state, appointment.interview);
 
-        console.log(appointment.time)
 		return (
 			<Appointment
 				key={appointment.id}
@@ -23,8 +26,8 @@ export default function Application() {
 				time={appointment.time}
 				interview={interview}
 				interviewers={interviewers}
-                bookInterview={bookInterview}
-                cancelInterview={cancelInterview}
+				bookInterview={bookInterview}
+				cancelInterview={cancelInterview}
 			/>
 		);
 	});
@@ -51,10 +54,13 @@ export default function Application() {
 					alt="Lighthouse Labs"
 				/>
 			</section>
-            <section className="schedule">{appointmentDisplay}
-            <Appointment key="last" time="5pm" />
-            </section>
-            
+			<section className="schedule">
+				{appointmentDisplay}
+				<Appointment
+					key="last"
+					time="5pm"
+				/>
+			</section>
 		</main>
 	);
 }

@@ -35,7 +35,7 @@ describe("Application", () => {
 
     it("loads data, books an interview and reduces the spots remaining for Monday by 1", async () => {
         const { container, debug } = render(<Application />);
-        console.log(prettyDOM(container));
+        // console.log(prettyDOM(container));
       
         await waitForElement(() => getByText(container, "Archie Cohen"));
       
@@ -54,13 +54,13 @@ describe("Application", () => {
         expect(getByText(appointment, "Saving")).toBeInTheDocument();
 
         await waitForElement(() => getByText(appointment, "Lydia Miller-Jones"));
-        console.log(prettyDOM(appointment));
+        // console.log(prettyDOM(appointment));
        
         const day = getAllByTestId(container, "day").find(day =>
             queryByText(day, "Monday")
           );
           
-        console.log(prettyDOM(day));
+        // console.log(prettyDOM(day));
       
         expect(getByText(day, "no spots remaining")).toBeInTheDocument();
     });

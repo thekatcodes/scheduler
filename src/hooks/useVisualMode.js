@@ -18,11 +18,6 @@ export default function useVisualMode(initial) {
 	};
 
 	const back = function () {
-		// if (history.length > 1) {
-		// 	const prevHistory = history.slice(0, -1);
-		// 	setHistory(prevHistory);
-		// 	setMode(prevHistory[prevHistory.length - 1]);
-		// }
 		//goes back in history
 		let prevHistory = [...history];
 		if (history.length > 1) {

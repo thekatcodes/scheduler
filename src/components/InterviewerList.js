@@ -5,9 +5,11 @@ import "components/InterviewerList.scss";
 import PropTypes from 'prop-types'; 
 
 export default function InterviewerList(props) {
+
     const { interviewers, value, onChange } = props;
-    // console.log(interviewers)
+
     const ObjtoArray = (obj) => Object.assign([], Object.values(obj));
+
 	const interviewerDisplay = ObjtoArray(interviewers).map((interviewer) => {
         return (
             <InterviewerListItem
@@ -20,7 +22,8 @@ export default function InterviewerList(props) {
 			
         );
         
-	});
+    });
+    
 	return (
 		<section className="interviewers">
 			<h4 className="interviewers__header text--light">Interviewers</h4>
