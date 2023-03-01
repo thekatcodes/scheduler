@@ -15,6 +15,7 @@ export default function Application() {
     const appointmentDisplay = dailyAppointments.map((appointment) => {
 		const interview = getInterview(state, appointment.interview);
 
+        console.log(appointment.time)
 		return (
 			<Appointment
 				key={appointment.id}
@@ -50,7 +51,10 @@ export default function Application() {
 					alt="Lighthouse Labs"
 				/>
 			</section>
-			<section className="schedule">{appointmentDisplay}</section>
+            <section className="schedule">{appointmentDisplay}
+            <Appointment key="last" time="5pm" />
+            </section>
+            
 		</main>
 	);
 }
