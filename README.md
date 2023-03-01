@@ -2,7 +2,6 @@
 Interview Scheduler is a single-page app that allows users to book interviews. The front end of this project was created with **React**. It makes requests to an **API** with **Axios** to fetch and store appointment data from a database. This project was tested using **Storybook**, **Jest** and **Cypress**.
 
 ## Final Product
-### Demo
 - Interviews can be booked between Monday and Friday.
 - A user can switch between weekdays.
 - A user can book an interview in an empty appointment slot.
@@ -16,6 +15,11 @@ Interview Scheduler is a single-page app that allows users to book interviews. T
 - A user is shown a status indicator while asynchronous operations are in progress.
 - When the user presses the close button of the error they are returned to the Form or Show view (skipping Status and Confirm).
 - The application makes API requests to load and persist data. We do not lose data after a browser refresh.
+
+### Demo
+
+https://user-images.githubusercontent.com/83685887/222258861-379924f1-e727-4b56-97f0-7093aa791d4a.mov
+
 
 ## Setup
 1. Clone this repository.
