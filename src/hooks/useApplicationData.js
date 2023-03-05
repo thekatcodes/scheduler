@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { updateSpots } from "helpers/selectors";
 import axios from "axios";
 
+/* Custom hook that returns a number of helper functions that use the application data */
 export default function useApplicationData() {
 	const [state, setState] = useState({
 		day: "Monday",
@@ -27,7 +28,12 @@ export default function useApplicationData() {
 		});
 	}, []);
 
-	/* Add booked interview */
+	/* Add booked interview
+	 *
+	 * @param {number} id represents the ID of the appointment being booked.
+	 * @param {object} interview represents the interview data.
+	 * @return {promise} returns the result of the axios.put() request.
+	 * */
 
 	const bookInterview = function (id, interview) {
 		const appointment = {
@@ -50,7 +56,11 @@ export default function useApplicationData() {
 		});
 	};
 
-	/* Remove/Cancel booked interview */
+	/* Remove/Cancel booked interview
+	 *
+	 * @param {number} id represents the ID of the appointment being cancelled.
+	 * @return {promise} returns the result of the axios.put() request.
+	 */
 
 	const cancelInterview = function (id) {
 		const appointment = {

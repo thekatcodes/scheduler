@@ -1,9 +1,11 @@
 import { useState } from "react";
 
+/* Custom hook that returns helper functions that change which visual mode is being used */
 export default function useVisualMode(initial) {
 	const [mode, setMode] = useState(initial);
 	const [history, setHistory] = useState([initial]);
 
+    /* Transitions from previous mode to a new mode */
 	const transition = function (newMode, replace = false) {
 		setHistory((prev) => {
 			if (replace) {
@@ -16,7 +18,7 @@ export default function useVisualMode(initial) {
 		});
 		setMode(newMode);
 	};
-
+    /* Sets the previous mode as the current mode */
 	const back = function () {
 		//goes back in history
 		let prevHistory = [...history];
