@@ -18,7 +18,6 @@ export default function useApplicationData() {
 			axios.get("/api/appointments"),
 			axios.get("/api/interviewers"),
 		]).then((all) => {
-			console.log(all);
 			setState((prev) => ({
 				...prev,
 				days: all[0].data,
@@ -68,11 +67,6 @@ export default function useApplicationData() {
 			...state.appointments,
 			[id]: appointment,
 		};
-
-		setState({
-			...state,
-			appointments,
-		});
 
 		return axios.delete(`/api/appointments/${id}`).then(() => {
 			const days = updateSpots(state, appointments);

@@ -37,12 +37,9 @@ export default function Appointment(props) {
 			.catch(() => transition(ERROR_SAVE, true));
 	}
 
-	function deleteAppointment() {
-		transition(CONFIRM);
-	}
-
-	function confirm() {
-		transition(DELETING, true);
+	function destroy() {
+        transition(DELETING, true);
+        
 		cancelInterview(id)
 			.then(() => transition(EMPTY))
 			.catch(() => transition(ERROR_DELETE, true));
@@ -55,11 +52,11 @@ export default function Appointment(props) {
 		>
 			<Header time={time} />
 			{mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
-			{mode === SHOW && (
+            {mode === SHOW && (
 				<Show
 					student={interview.student}
 					interviewer={interview.interviewer}
-					onDelete={deleteAppointment}
+                    onDelete={() => transition(CONFIRM)}
 					onEdit={() => transition(EDIT)}
 				/>
 			)}
@@ -86,7 +83,7 @@ export default function Appointment(props) {
 				<Confirm
 					message="Are you sure you would like to delete?"
 					onCancel={back}
-					onConfirm={confirm}
+					onConfirm={destroy}
 				/>
 			)}
 			{mode === ERROR_SAVE && (
