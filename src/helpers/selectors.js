@@ -47,3 +47,27 @@ export const getInterviewersForDay = (state, day) => {
 
 	return selectInterviewers;
 };
+
+/* Updates appointment spots remaining */
+
+ export function updateSpots(state, appointments) {
+    const index = state.days.findIndex((d) => d.name === state.day);
+  
+    const dayObj = state.days[index];
+  
+    let spots = 0;
+  
+    for (const id of dayObj.appointments) {
+      const appointment = appointments[id];
+      if (!appointment.interview) {
+        spots++;
+      }
+    }
+  
+    const newDays = [...state.days];
+    const day = { ...dayObj, spots };
+    newDays[index] = day;
+  
+    return newDays;
+  }
+  
