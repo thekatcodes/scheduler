@@ -70,3 +70,6 @@ npm run storybook
 - react: 16.9.0
 - react-dom: 16.9.0
 - react-scripts: 3.4.4
+
+## Thank You
+Thank you for taking the time to look at one of my projects!
